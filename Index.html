@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>E-Arsip Surat PGRI Kecamatan Teweh Selatan</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            pgri: {
+              emerald: '#0F5132',
+              green: '#15803D',
+              light: '#ECFDF5',
+              crimson: '#DC2626',
+              gold: '#F59E0B',
+              dark: '#062E1E'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #F1F5F9;
+      color: #1E293B;
+      overflow-x: hidden;
+    }
+
+    /* Background Tema PGRI dengan Gradasi Halus & Ambient Orbs */
+    .pgri-theme-bg {
+      background: radial-gradient(circle at 15% 20%, rgba(21, 128, 61, 0.88) 0%, rgba(15, 81, 50, 0.96) 45%, #052014 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(75px);
+      z-index: 0;
+      animation: floatOrb 12s infinite alternate ease-in-out;
+    }
+
+    .orb-1 {
+      width: 320px;
+      height: 320px;
+      background: rgba(220, 38, 38, 0.35);
+      top: -80px;
+      right: -60px;
+    }
+
+    .orb-2 {
+      width: 280px;
+      height: 280px;
+      background: rgba(245, 158, 11, 0.30);
+      bottom: -70px;
+      left: -50px;
+      animation-delay: -5s;
+    }
+
+    .orb-3 {
+      width: 240px;
+      height: 240px;
+      background: rgba(16, 185, 129, 0.35);
+      top: 40%;
+      left: 55%;
+      animation-delay: -3s;
+    }
+
+    @keyframes floatOrb {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(25px, -30px) scale(1.08); }
+    }
+
+    /* Efek iOS Glassmorphism */
+    .ios-glass {
+      background: rgba(255, 255, 255, 0.16);
+      backdrop-filter: blur(24px) saturate(180%);
+      -webkit-backdrop-filter: blur(24px) saturate(180%);
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+    }
+
+    .ios-input {
+      background: rgba(255, 255, 255, 0.14);
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      color: #FFFFFF;
+      transition: all 0.25s ease;
+    }
+
+    .ios-input::placeholder {
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    .ios-input:focus {
+      background: rgba(255, 255, 255, 0.24);
+      border-color: rgba(255, 255, 255, 0.7);
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.12);
+    }
+
+    /* Glass Header di Dashboard */
+    .glass-header {
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+    }
+
+    /* Animasi Transisi Login ke Dashboard */
+    .login-card-exit {
+      transform: scale(0.92) translateY(-15px);
+      opacity: 0;
+      filter: blur(10px);
+      transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    @keyframes popInRing {
+      0% { transform: scale(0.5); opacity: 0; }
+      70% { transform: scale(1.08); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+
+    .animate-pop-in {
+      animation: popInRing 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    @keyframes progressLoad {
+      0% { width: 0%; }
+      100% { width: 100%; }
+    }
+
+    .animate-progress-bar {
+      animation: progressLoad 1.4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    /* Animasi Tulisan & Elemen saat Dashboard Pertama Kali Muncul */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .reveal-up {
+      opacity: 0;
+      animation: fadeInUp 0.75s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .delay-100 { animation-delay: 0.12s; }
+    .delay-200 { animation-delay: 0.25s; }
+    .delay-300 { animation-delay: 0.38s; }
+    .delay-400 { animation-delay: 0.52s; }
+
+    /* Efek Teks Berkilau & Kursor Ketik pada Judul Dashboard */
+    .shimmer-title {
+      background: linear-gradient(90deg, #FFFFFF 0%, #FDE68A 50%, #FFFFFF 100%);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textShimmer 5s linear infinite;
+    }
+
+    @keyframes textShimmer {
+      to { background-position: 200% center; }
+    }
+
+    .typing-cursor::after {
+      content: '|';
+      display: inline-block;
+      margin-left: 3px;
+      color: #FBBF24;
+      -webkit-text-fill-color: #FBBF24;
+      animation: blinkCursor 0.8s infinite;
+    }
+
+    @keyframes blinkCursor {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #F1F5F9; }
+    ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+  </style>
+</head>
+<body class="antialiased selection:bg-pgri-emerald selection:text-white">
+
+  <!-- ===================================================================== -->
+  <!-- KOMPONEN SVG LOGO PGRI (Fallback Otomatis & Presisi Sesuai Upload 1) -->
+  <!-- ===================================================================== -->
+  <template id="pgri-logo-template">
+    <svg viewBox="0 0 200 200" class="w-full h-full drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="100" cy="100" r="98" fill="#FFFFFF" stroke="#1E293B" stroke-width="2"/>
+      <circle cx="100" cy="100" r="93" fill="#D32F2F" stroke="#FFFFFF" stroke-width="2"/>
+      <circle cx="100" cy="100" r="64" fill="#0B6E3F" stroke="#FFFFFF" stroke-width="2.5"/>
+      <defs>
+        <path id="textPathTop" d="M 22,100 A 78,78 0 1,1 178,100" />
+        <path id="textPathBottom" d="M 178,100 A 78,78 0 1,1 22,100" />
+      </defs>
+      <text fill="#FFFFFF" font-size="13.5" font-weight="800" letter-spacing="1.6">
+        <textPath href="#textPathTop" startOffset="50%" text-anchor="middle">PERSATUAN GURU REPUBLIK INDONESIA</textPath>
+      </text>
+      <text fill="#FFFFFF" font-size="16" font-weight="800" letter-spacing="4">
+        <textPath href="#textPathBottom" startOffset="50%" text-anchor="middle">P G R I</textPath>
+      </text>
+      <g fill="none" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round">
+        <rect x="52" y="75" width="12" height="44" rx="2" fill="#0B6E3F"/>
+        <line x1="56" y1="75" x2="56" y2="119"/>
+        <line x1="60" y1="75" x2="60" y2="119"/>
+        <rect x="136" y="75" width="12" height="44" rx="2" fill="#0B6E3F"/>
+        <line x1="140" y1="75" x2="140" y2="119"/>
+        <line x1="144" y1="75" x2="144" y2="119"/>
+        <rect x="68" y="96" width="64" height="10" rx="3" fill="#0B6E3F"/>
+        <rect x="68" y="108" width="64" height="10" rx="3" fill="#0B6E3F"/>
+      </g>
+      <path d="M84,65 L116,65 L106,148 C105,153 95,153 94,148 Z" fill="#FACC15" stroke="#FFFFFF" stroke-width="2.5"/>
+      <ellipse cx="100" cy="65" rx="18" ry="6" fill="#FDE047" stroke="#FFFFFF" stroke-width="2"/>
+      <ellipse cx="100" cy="76" rx="16" ry="5" fill="#FACC15" stroke="#FFFFFF" stroke-width="2"/>
+      <path d="M82,60 C78,42 90,34 92,22 C96,30 100,20 103,14 C106,24 110,28 113,22 C114,34 122,42 118,60 Z" fill="#DC2626" stroke="#FFFFFF" stroke-width="2.2" stroke-linejoin="round"/>
+    </svg>
+  </template>
+
+  <!-- ===================================================================== -->
+  <!-- 1. HALAMAN LOGIN (EFEK GLASSMORPHISM SEPERTI iOS - TANPA TEKS DEMO)    -->
+  <!-- ===================================================================== -->
+  <section id="login-screen" class="pgri-theme-bg min-h-screen flex items-center justify-center p-4 relative">
+    <!-- Ornamen Cahaya Blur iOS -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <!-- Kartu Glassmorphism iOS -->
+    <div id="login-glass-card" class="ios-glass relative z-10 w-full max-w-md rounded-3xl p-7 sm:p-9 text-white transition-all duration-500">
+      <div class="flex flex-col items-center text-center mb-7">
+        <!-- Wadah Logo PGRI -->
+        <div class="w-24 h-24 rounded-full bg-white/20 p-1.5 shadow-xl border border-white/40 mb-4 flex items-center justify-center overflow-hidden">
+          <div id="login-logo-container" class="w-full h-full rounded-full overflow-hidden flex items-center justify-center"></div>
+        </div>
+        <span class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-widest bg-white/15 border border-white/25 text-amber-300 mb-2">
+          E-Arsip Digital Organisasi
+        </span>
+        <h1 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-white drop-shadow-sm">
+          PGRI Teweh Selatan
+        </h1>
+        <p class="text-xs sm:text-sm text-emerald-100/85 mt-1">
+          Sistem Manajemen Arsip Surat Masuk & Surat Keluar
+        </p>
+      </div>
+
+      <!-- Alert Error Login -->
+      <div id="login-alert" class="hidden mb-4 p-3.5 rounded-2xl bg-red-500/30 border border-red-300/40 text-xs sm:text-sm text-white flex items-center gap-2.5 backdrop-blur-md">
+        <i class="fa-solid fa-circle-exclamation text-red-200 text-base"></i>
+        <span id="login-alert-text">Username atau password tidak sesuai!</span>
+      </div>
+
+      <!-- Form Login -->
+      <form id="login-form" onsubmit="handleLogin(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-emerald-100/90 mb-1.5 ml-1">
+            Username
+          </label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-white/70">
+              <i class="fa-regular fa-user"></i>
+            </span>
+            <input type="text" id="login-username" required placeholder="Masukkan username Anda" autocomplete="username"
+              class="ios-input w-full pl-11 pr-4 py-3.5 rounded-2xl text-sm font-medium">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-semibold uppercase tracking-wider text-emerald-100/90 mb-1.5 ml-1">
+            Password
+          </label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-4 flex items-center text-white/70">
+              <i class="fa-solid fa-lock"></i>
+            </span>
+            <input type="password" id="login-password" required placeholder="Masukkan password Anda" autocomplete="current-password"
+              class="ios-input w-full pl-11 pr-12 py-3.5 rounded-2xl text-sm font-medium">
+            <button type="button" onclick="togglePassword()" class="absolute inset-y-0 right-0 pr-4 flex items-center text-white/70 hover:text-white">
+              <i id="eye-icon" class="fa-regular fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <button type="submit" id="btn-login"
+          class="w-full mt-3 py-3.5 px-6 rounded-2xl font-bold text-sm bg-gradient-to-r from-amber-400 via-amber-500 to-red-600 text-white shadow-lg shadow-red-900/30 hover:brightness-110 active:scale-[0.99] transition-all flex items-center justify-center gap-2">
+          <span>Masuk ke Aplikasi</span>
+          <i class="fa-solid fa-arrow-right-to-bracket"></i>
+        </button>
+      </form>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- OVERLAY ANIMASI TRANSISI LOGIN BERHASIL                           -->
+    <!-- ================================================================= -->
+    <div id="login-success-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4 bg-pgri-dark/80 backdrop-blur-2xl transition-opacity duration-500">
+      <div class="ios-glass max-w-sm w-full rounded-3xl p-8 text-center text-white animate-pop-in">
+        <div class="relative w-24 h-24 mx-auto mb-5">
+          <div class="absolute inset-0 rounded-full bg-emerald-400/30 animate-ping"></div>
+          <div class="relative w-24 h-24 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-400 p-1 shadow-xl border-2 border-white flex items-center justify-center">
+            <i class="fa-solid fa-check text-4xl text-white drop-shadow"></i>
+          </div>
+        </div>
+        <span class="px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-emerald-400/20 border border-emerald-300/30 text-emerald-200">
+          Autentikasi Berhasil
+        </span>
+        <h2 id="transition-user-greeting" class="text-xl font-extrabold mt-3 text-white">
+          Selamat Datang!
+        </h2>
+        <p class="text-xs text-emerald-100/80 mt-1 mb-5">
+          Menyiapkan Dashboard Arsip PGRI Kecamatan Teweh Selatan...
+        </p>
+        <div class="w-full h-1.5 bg-white/15 rounded-full overflow-hidden">
+          <div id="login-progress-bar" class="h-full bg-gradient-to-r from-amber-400 to-emerald-400 rounded-full"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================================================================== -->
+  <!-- 2. HALAMAN UTAMA APLIKASI (DASHBOARD, SURAT MASUK, SURAT KELUAR)       -->
+  <!-- ===================================================================== -->
+  <div id="app-screen" class="hidden min-h-screen flex flex-col md:flex-row pb-20 md:pb-0">
+
+    <!-- SIDEBAR DESKTOP (Tampil di Laptop/Layar Lebar) -->
+    <aside class="hidden md:flex md:flex-col md:w-72 bg-pgri-emerald text-white shrink-0 shadow-xl relative overflow-hidden">
+      <div class="p-6 flex items-center gap-3.5 border-b border-white/10">
+        <div class="w-12 h-12 rounded-full bg-white p-1 shrink-0 shadow-md flex items-center justify-center overflow-hidden">
+          <div class="sidebar-logo-container w-full h-full"></div>
+        </div>
+        <div>
+          <h2 class="font-extrabold text-base leading-tight">PGRI Teweh Selatan</h2>
+          <p class="text-[11px] text-emerald-200/80 font-medium">Sistem E-Arsip Surat</p>
+        </div>
+      </div>
+
+      <nav class="flex-1 p-4 space-y-2">
+        <button onclick="switchTab('dashboard')" id="nav-desk-dashboard"
+          class="nav-btn-desk w-full flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-semibold transition-all bg-white/15 text-white shadow-sm">
+          <i class="fa-solid fa-chart-pie w-5 text-center text-amber-300"></i>
+          <span>Dashboard Utama</span>
+        </button>
+
+        <button onclick="switchTab('masuk')" id="nav-desk-masuk"
+          class="nav-btn-desk w-full flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-semibold text-emerald-100/80 hover:bg-white/10 hover:text-white transition-all">
+          <i class="fa-solid fa-inbox w-5 text-center text-emerald-300"></i>
+          <span>Surat Masuk (Drive)</span>
+        </button>
+
+        <button onclick="switchTab('keluar')" id="nav-desk-keluar"
+          class="nav-btn-desk w-full flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-semibold text-emerald-100/80 hover:bg-white/10 hover:text-white transition-all">
+          <i class="fa-solid fa-paper-plane w-5 text-center text-red-300"></i>
+          <span>Surat Keluar (Generator)</span>
+        </button>
+      </nav>
+
+      <!-- Info Pengguna & Logout di Bawah Sidebar -->
+      <div class="p-4 m-4 rounded-2xl bg-black/20 border border-white/10">
+        <div class="flex items-center justify-between">
+          <div class="truncate pr-2">
+            <p id="user-display-name" class="text-xs font-bold text-white truncate">Admin PGRI</p>
+            <p id="user-display-role" class="text-[11px] text-emerald-200/80 truncate">Sekretariat</p>
+          </div>
+          <button onclick="handleLogout()" title="Keluar"
+            class="p-2.5 rounded-xl bg-red-500/20 hover:bg-red-500 text-red-200 hover:text-white transition-all">
+            <i class="fa-solid fa-power-off text-xs"></i>
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- KONTEN UTAMA -->
+    <div class="flex-1 flex flex-col min-w-0">
+
+      <!-- TOP HEADER (Mobile & Desktop) -->
+      <header class="glass-header sticky top-0 z-30 px-4 sm:px-8 py-3.5 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="md:hidden w-10 h-10 rounded-full bg-pgri-emerald p-0.5 shadow flex items-center justify-center overflow-hidden">
+            <div class="sidebar-logo-container w-full h-full"></div>
+          </div>
+          <div>
+            <h1 id="page-title" class="text-base sm:text-xl font-extrabold text-slate-800">Dashboard Arsip</h1>
+            <p class="text-[11px] sm:text-xs text-slate-500">PGRI Kecamatan Teweh Selatan</p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2.5">
+          <button onclick="refreshData()" class="p-2.5 rounded-xl bg-slate-100 hover:bg-emerald-50 text-slate-600 hover:text-pgri-emerald transition-all" title="Muat Ulang Data">
+            <i id="refresh-icon" class="fa-solid fa-arrows-rotate text-sm"></i>
+          </button>
+          <button onclick="handleLogout()" class="md:hidden p-2.5 rounded-xl bg-red-50 text-red-600 hover:bg-red-100 transition-all" title="Keluar">
+            <i class="fa-solid fa-power-off text-sm"></i>
+          </button>
+        </div>
+      </header>
+
+      <!-- AREA ISI HALAMAN -->
+      <main class="p-4 sm:p-8 max-w-7xl w-full mx-auto space-y-6">
+
+        <!-- =============================================================== -->
+        <!-- TAB 1: DASHBOARD (DENGAN ANIMASI TULISAN KETIK & FADE-IN)        -->
+        <!-- =============================================================== -->
+        <div id="tab-dashboard" class="space-y-6">
+          <!-- Banner Sambutan dengan Animasi Tulisan -->
+          <div id="dash-hero-banner" class="pgri-theme-bg rounded-3xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
+            <div class="orb orb-1" style="width:200px;height:200px;opacity:0.4;"></div>
+            <div class="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div>
+                <span id="dash-badge-anim" class="inline-block px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-white/15 border border-white/20 text-amber-300 mb-2">
+                  <i class="fa-solid fa-sparkles mr-1"></i> Sistem E-Arsip Digital Terintegrasi
+                </span>
+                <!-- Judul Animasi Ketik (Typewriter + Shimmer) -->
+                <h2 id="welcome-typing-text" class="text-xl sm:text-3xl font-extrabold shimmer-title typing-cursor min-h-[2rem] sm:min-h-[2.5rem]"></h2>
+                <!-- Subjudul Animasi Muncul Halus -->
+                <p id="welcome-subtitle-anim" class="text-xs sm:text-sm text-emerald-100/90 mt-1.5 max-w-2xl transition-all duration-700 opacity-0 translate-y-2">
+                  Kelola pengarsipan dokumen surat masuk dan surat keluar PGRI Kecamatan Teweh Selatan secara cepat, rapi, dan terhubung langsung ke Google Drive serta Google Sheets.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-2.5 shrink-0">
+                <button onclick="switchTab('masuk')" class="px-4 py-2.5 rounded-xl bg-white text-pgri-emerald font-bold text-xs sm:text-sm shadow hover:bg-emerald-50 transition-all">
+                  <i class="fa-solid fa-cloud-arrow-up mr-1.5"></i> Upload Surat Masuk
+                </button>
+                <button onclick="switchTab('keluar')" class="px-4 py-2.5 rounded-xl bg-amber-500 text-white font-bold text-xs sm:text-sm shadow hover:bg-amber-600 transition-all">
+                  <i class="fa-solid fa-wand-magic-sparkles mr-1.5"></i> Buat Surat Keluar
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Kartu Statistik dengan Animasi Stagger -->
+          <div id="dash-stats-grid" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="dash-anim-card bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex items-center gap-4">
+              <div class="w-13 h-13 p-3.5 rounded-2xl bg-emerald-50 text-pgri-emerald flex items-center justify-center text-xl">
+                <i class="fa-solid fa-inbox"></i>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Surat Masuk</p>
+                <h3 id="stat-masuk" class="text-2xl font-extrabold text-slate-800 mt-0.5">0</h3>
+                <p class="text-[11px] text-emerald-600 font-medium">Tersimpan di Drive Surat Masuk</p>
+              </div>
+            </div>
+
+            <div class="dash-anim-card bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex items-center gap-4">
+              <div class="w-13 h-13 p-3.5 rounded-2xl bg-red-50 text-pgri-crimson flex items-center justify-center text-xl">
+                <i class="fa-solid fa-paper-plane"></i>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Total Surat Keluar</p>
+                <h3 id="stat-keluar" class="text-2xl font-extrabold text-slate-800 mt-0.5">0</h3>
+                <p class="text-[11px] text-red-600 font-medium">Tercatat di Sheet & Drive</p>
+              </div>
+            </div>
+
+            <div class="dash-anim-card bg-white rounded-2xl p-5 border border-slate-200/80 shadow-sm flex items-center gap-4">
+              <div class="w-13 h-13 p-3.5 rounded-2xl bg-amber-50 text-amber-600 flex items-center justify-center text-xl">
+                <i class="fa-solid fa-hashtag"></i>
+              </div>
+              <div>
+                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Nomor Urut Berikutnya</p>
+                <h3 id="stat-next-urut" class="text-2xl font-extrabold text-slate-800 mt-0.5">01</h3>
+                <p class="text-[11px] text-amber-600 font-medium">Siap Digenerate Otomatis</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Ringkasan Arsip Terbaru -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div class="dash-anim-card bg-white rounded-2xl border border-slate-200/80 shadow-sm p-5">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-bold text-slate-800 text-sm sm:text-base flex items-center gap-2">
+                  <i class="fa-solid fa-inbox text-pgri-emerald"></i> Surat Masuk Terbaru
+                </h3>
+                <button onclick="switchTab('masuk')" class="text-xs font-bold text-pgri-emerald hover:underline">Lihat Semua</button>
+              </div>
+              <div id="dash-list-masuk" class="space-y-2.5 text-xs text-slate-600">
+                <p class="text-slate-400 italic py-4 text-center">Belum ada data surat masuk.</p>
+              </div>
+            </div>
+
+            <div class="dash-anim-card bg-white rounded-2xl border border-slate-200/80 shadow-sm p-5">
+              <div class="flex items-center justify-between mb-4">
+                <h3 class="font-bold text-slate-800 text-sm sm:text-base flex items-center gap-2">
+                  <i class="fa-solid fa-paper-plane text-pgri-crimson"></i> Surat Keluar Terbaru
+                </h3>
+                <button onclick="switchTab('keluar')" class="text-xs font-bold text-pgri-crimson hover:underline">Lihat Semua</button>
+              </div>
+              <div id="dash-list-keluar" class="space-y-2.5 text-xs text-slate-600">
+                <p class="text-slate-400 italic py-4 text-center">Belum ada data surat keluar.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- =============================================================== -->
+        <!-- TAB 2: SURAT MASUK (UPLOAD KE DRIVE + PREVIEW DOKUMEN)          -->
+        <!-- =============================================================== -->
+        <div id="tab-masuk" class="hidden space-y-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- Form Upload Surat Masuk (Kiri - 5 Kolom) -->
+            <div class="lg:col-span-5 bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-pgri-emerald flex items-center justify-center">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                </div>
+                <div>
+                  <h2 class="font-bold text-slate-800 text-base">Input & Upload Surat Masuk</h2>
+                  <p class="text-xs text-slate-500">Tersimpan ke Folder Google Drive Surat Masuk</p>
+                </div>
+              </div>
+
+              <form id="form-surat-masuk" onsubmit="handleUploadSuratMasuk(event)" class="space-y-4">
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Nomor Surat Masuk <span class="text-red-500">*</span></label>
+                  <input type="text" id="masuk-nomor" required placeholder="Masukkan nomor surat masuk"
+                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pgri-emerald focus:ring-2 focus:ring-emerald-100 outline-none">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Tanggal Surat</label>
+                    <input type="date" id="masuk-tanggal" required
+                      class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pgri-emerald focus:ring-2 focus:ring-emerald-100 outline-none">
+                  </div>
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Pengirim / Instansi</label>
+                    <input type="text" id="masuk-pengirim" required placeholder="Asal instansi pengirim"
+                      class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pgri-emerald focus:ring-2 focus:ring-emerald-100 outline-none">
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Perihal / Tentang Surat <span class="text-red-500">*</span></label>
+                  <textarea id="masuk-perihal" rows="2" required placeholder="Masukkan ringkasan perihal surat masuk..."
+                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pgri-emerald focus:ring-2 focus:ring-emerald-100 outline-none"></textarea>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">File Dokumen Surat Masuk (PDF / Gambar) <span class="text-red-500">*</span></label>
+                  <label for="masuk-file" class="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed border-emerald-300 rounded-2xl cursor-pointer bg-emerald-50/40 hover:bg-emerald-50 transition-all p-4 text-center">
+                    <i class="fa-solid fa-file-arrow-up text-2xl text-pgri-emerald mb-1.5"></i>
+                    <span id="file-chosen-label-masuk" class="text-xs font-semibold text-slate-700">Klik untuk pilih file PDF / JPG / PNG</span>
+                    <span class="text-[11px] text-slate-400 mt-0.5">Langsung menampilkan preview di sebelah kanan</span>
+                    <input id="masuk-file" type="file" accept=".pdf,image/*" required class="hidden" onchange="handleLocalPreviewMasuk(event)">
+                  </label>
+                </div>
+
+                <button type="submit" id="btn-submit-masuk"
+                  class="w-full py-3 px-5 rounded-xl bg-pgri-emerald hover:bg-pgri-green text-white font-bold text-sm shadow-md shadow-emerald-900/15 transition-all flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  <span>Upload ke Drive & Simpan Arsip</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- Panel Preview & Daftar Surat Masuk (Kanan - 7 Kolom) -->
+            <div class="lg:col-span-7 space-y-6">
+              <!-- Kotak Live Preview Surat Masuk -->
+              <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-eye text-pgri-emerald"></i>
+                    <h3 class="font-bold text-slate-800 text-sm sm:text-base">Preview Dokumen Surat Masuk</h3>
+                  </div>
+                  <a id="preview-external-link-masuk" href="#" target="_blank" class="hidden text-xs font-bold text-pgri-emerald hover:underline">
+                    Buka di Drive <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                  </a>
+                </div>
+                <p id="preview-caption-masuk" class="text-xs text-slate-500 mb-3">
+                  Pilih file dari perangkat Anda atau klik tombol <strong>"Preview"</strong> pada daftar surat masuk di bawah.
+                </p>
+
+                <div class="w-full h-80 sm:h-96 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center overflow-hidden relative">
+                  <div id="preview-placeholder-masuk" class="text-center p-6 text-slate-400">
+                    <i class="fa-regular fa-file-pdf text-4xl mb-2"></i>
+                    <p class="text-xs font-medium">Belum ada dokumen surat masuk yang dipilih</p>
+                  </div>
+                  <iframe id="preview-iframe-masuk" class="hidden w-full h-full border-0"></iframe>
+                  <img id="preview-image-masuk" class="hidden max-w-full max-h-full object-contain" alt="Preview Surat Masuk">
+                </div>
+              </div>
+
+              <!-- Daftar Arsip Surat Masuk -->
+              <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6">
+                <h3 class="font-bold text-slate-800 text-sm sm:text-base mb-4">Daftar Arsip Surat Masuk (Google Drive)</h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-left border-collapse">
+                    <thead>
+                      <tr class="border-b border-slate-200 text-[11px] font-bold uppercase text-slate-500 bg-slate-50">
+                        <th class="py-3 px-3 rounded-tl-xl">Nomor & Tanggal</th>
+                        <th class="py-3 px-3">Pengirim & Perihal</th>
+                        <th class="py-3 px-3 text-right rounded-tr-xl">Aksi</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-surat-masuk" class="divide-y divide-slate-100 text-xs">
+                      <tr>
+                        <td colspan="3" class="py-6 text-center text-slate-400 italic">Memuat data surat masuk...</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- =============================================================== -->
+        <!-- TAB 3: SURAT KELUAR (GENERATOR + UPLOAD DRIVE + GOOGLE SHEET)   -->
+        <!-- =============================================================== -->
+        <div id="tab-keluar" class="hidden space-y-6">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+
+            <!-- Generator Nomor & Upload Surat Keluar (Kiri - 5 Kolom) -->
+            <div class="lg:col-span-5 bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6">
+              <div class="flex items-center gap-3 mb-5">
+                <div class="w-10 h-10 rounded-xl bg-red-50 text-pgri-crimson flex items-center justify-center">
+                  <i class="fa-solid fa-wand-magic-sparkles"></i>
+                </div>
+                <div>
+                  <h2 class="font-bold text-slate-800 text-base">Generator & Upload Surat Keluar</h2>
+                  <p class="text-xs text-slate-500">Tersimpan ke Google Sheet & Drive Surat Keluar</p>
+                </div>
+              </div>
+
+              <!-- Hasil Generator Live Box -->
+              <div class="p-4 rounded-2xl bg-gradient-to-br from-pgri-emerald to-pgri-dark text-white mb-5 shadow-md">
+                <div class="flex items-center justify-between mb-1">
+                  <span class="text-[10px] font-bold uppercase tracking-widest text-amber-300">Hasil Generator Nomor Surat</span>
+                  <button type="button" onclick="copyNomorSurat()" class="text-[11px] bg-white/15 hover:bg-white/25 px-2.5 py-1 rounded-lg font-semibold transition-all">
+                    <i class="fa-regular fa-copy mr-1"></i> Salin
+                  </button>
+                </div>
+                <div id="generated-number-preview" class="text-base sm:text-lg font-extrabold tracking-wide font-mono break-all">
+                  01/UND/PGRI-TESEL/X/2026
+                </div>
+              </div>
+
+              <form id="form-surat-keluar" onsubmit="handleSaveSuratKeluar(event)" class="space-y-4">
+                <div class="grid grid-cols-3 gap-3">
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">No. Urut</label>
+                    <input type="text" id="keluar-urut" value="01" oninput="updateGenerator()" required
+                      class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm font-bold text-center focus:border-pgri-emerald outline-none">
+                  </div>
+
+                  <div class="col-span-2">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Jenis Surat Keluar <span class="text-red-500">*</span></label>
+                    <select id="keluar-jenis" onchange="updateGenerator()"
+                      class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pgri-emerald outline-none bg-white">
+                      <option value="UND">UND - Surat Undangan</option>
+                      <option value="SK">SK - Surat Keputusan</option>
+                      <option value="ST">ST - Surat Tugas</option>
+                      <option value="SPm">SPm - Surat Permohonan</option>
+                      <option value="SPb">SPb - Surat Pemberitahuan</option>
+                      <option value="SKet">SKet - Surat Keterangan</option>
+                      <option value="SR">SR - Surat Rekomendasi</option>
+                      <option value="BA">BA - Berita Acara</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Bulan Surat <span class="text-red-500">*</span></label>
+                    <select id="keluar-bulan" onchange="updateGenerator()"
+                      class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pgri-emerald outline-none bg-white">
+                      <option value="I">Januari (I)</option>
+                      <option value="II">Februari (II)</option>
+                      <option value="III">Maret (III)</option>
+                      <option value="IV">April (IV)</option>
+                      <option value="V">Mei (V)</option>
+                      <option value="VI">Juni (VI)</option>
+                      <option value="VII">Juli (VII)</option>
+                      <option value="VIII">Agustus (VIII)</option>
+                      <option value="IX">September (IX)</option>
+                      <option value="X" selected>Oktober (X)</option>
+                      <option value="XI">November (XI)</option>
+                      <option value="XII">Desember (XII)</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Tahun Surat <span class="text-red-500">*</span></label>
+                    <select id="keluar-tahun" onchange="updateGenerator()"
+                      class="w-full px-3 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pgri-emerald outline-none bg-white">
+                      <option value="2025">2025</option>
+                      <option value="2026" selected>2026</option>
+                      <option value="2027">2027</option>
+                      <option value="2028">2028</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Nomor Surat Keluar Final <span class="text-red-500">*</span></label>
+                  <input type="text" id="keluar-nomor-final" required
+                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 bg-slate-50 font-mono text-sm font-bold text-pgri-emerald focus:bg-white focus:border-pgri-emerald outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Tujuan / Kepada</label>
+                  <input type="text" id="keluar-tujuan" placeholder="Penerima / tujuan surat keluar"
+                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pgri-emerald outline-none">
+                </div>
+
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Tentang / Perihal Surat Keluar <span class="text-red-500">*</span></label>
+                  <textarea id="keluar-tentang" rows="2" required placeholder="Masukkan perihal atau tentang surat keluar..."
+                    class="w-full px-3.5 py-2.5 rounded-xl border border-slate-300 text-sm focus:border-pgri-emerald outline-none"></textarea>
+                </div>
+
+                <!-- Tempat Upload File Surat Keluar -->
+                <div>
+                  <label class="block text-xs font-bold text-slate-700 mb-1">Upload File Surat Keluar (PDF / Gambar / Dokumen)</label>
+                  <label for="keluar-file" class="flex flex-col items-center justify-center w-full h-28 border-2 border-dashed border-red-300 rounded-2xl cursor-pointer bg-red-50/30 hover:bg-red-50/70 transition-all p-3 text-center">
+                    <i class="fa-solid fa-cloud-arrow-up text-xl text-pgri-crimson mb-1"></i>
+                    <span id="file-chosen-label-keluar" class="text-xs font-semibold text-slate-700">Klik untuk pilih file Surat Keluar</span>
+                    <span class="text-[11px] text-slate-400 mt-0.5">Otomatis diunggah ke Folder Drive Surat Keluar</span>
+                    <input id="keluar-file" type="file" accept=".pdf,image/*,.doc,.docx" class="hidden" onchange="handleLocalPreviewKeluar(event)">
+                  </label>
+                </div>
+
+                <button type="submit" id="btn-submit-keluar"
+                  class="w-full py-3 px-5 rounded-xl bg-pgri-crimson hover:bg-red-700 text-white font-bold text-sm shadow-md shadow-red-900/15 transition-all flex items-center justify-center gap-2">
+                  <i class="fa-solid fa-floppy-disk"></i>
+                  <span>Simpan ke Sheet & Upload ke Drive</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- Panel Preview & Tabel Surat Keluar (Kanan - 7 Kolom) -->
+            <div class="lg:col-span-7 space-y-6">
+              <!-- Kotak Live Preview Surat Keluar -->
+              <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6">
+                <div class="flex items-center justify-between mb-3">
+                  <div class="flex items-center gap-2.5">
+                    <i class="fa-solid fa-eye text-pgri-crimson"></i>
+                    <h3 class="font-bold text-slate-800 text-sm sm:text-base">Preview Dokumen Surat Keluar</h3>
+                  </div>
+                  <a id="preview-external-link-keluar" href="#" target="_blank" class="hidden text-xs font-bold text-pgri-crimson hover:underline">
+                    Buka di Drive <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                  </a>
+                </div>
+                <p id="preview-caption-keluar" class="text-xs text-slate-500 mb-3">
+                  Pilih file surat keluar atau klik tombol <strong>"Preview"</strong> pada tabel arsip di bawah.
+                </p>
+
+                <div class="w-full h-72 sm:h-80 rounded-2xl bg-slate-100 border border-slate-200 flex items-center justify-center overflow-hidden relative">
+                  <div id="preview-placeholder-keluar" class="text-center p-6 text-slate-400">
+                    <i class="fa-regular fa-file-lines text-4xl mb-2"></i>
+                    <p class="text-xs font-medium">Belum ada dokumen surat keluar yang dipilih</p>
+                  </div>
+                  <iframe id="preview-iframe-keluar" class="hidden w-full h-full border-0"></iframe>
+                  <img id="preview-image-keluar" class="hidden max-w-full max-h-full object-contain" alt="Preview Surat Keluar">
+                </div>
+              </div>
+
+              <!-- Tabel Riwayat Surat Keluar -->
+              <div class="bg-white rounded-3xl border border-slate-200/80 shadow-sm p-6">
+                <div class="mb-4">
+                  <h3 class="font-bold text-slate-800 text-sm sm:text-base">Data Arsip Surat Keluar (Google Sheet & Drive)</h3>
+                  <p class="text-xs text-slate-500">Nomor surat, tentang surat, dan dokumen tersimpan otomatis</p>
+                </div>
+
+                <div class="overflow-x-auto">
+                  <table class="w-full text-left border-collapse">
+                    <thead>
+                      <tr class="border-b border-slate-200 text-[11px] font-bold uppercase text-slate-500 bg-slate-50">
+                        <th class="py-3 px-3 rounded-tl-xl">Nomor Surat Keluar</th>
+                        <th class="py-3 px-3">Tentang / Perihal</th>
+                        <th class="py-3 px-3">Tujuan</th>
+                        <th class="py-3 px-3 text-right rounded-tr-xl">File Arsip</th>
+                      </tr>
+                    </thead>
+                    <tbody id="table-surat-keluar" class="divide-y divide-slate-100 text-xs">
+                      <tr>
+                        <td colspan="4" class="py-6 text-center text-slate-400 italic">Memuat data surat keluar...</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+    <!-- BOTTOM NAVIGATION BAR (Khusus Layar HP / Mobile Friendly) -->
+    <nav class="md:hidden fixed bottom-0 inset-x-0 z-40 bg-white/95 backdrop-blur-md border-t border-slate-200 flex items-center justify-around py-2 px-2 shadow-lg">
+      <button onclick="switchTab('dashboard')" id="nav-mob-dashboard"
+        class="flex flex-col items-center justify-center py-1 px-3 rounded-xl text-pgri-emerald font-bold text-[11px]">
+        <i class="fa-solid fa-chart-pie text-base mb-0.5"></i>
+        <span>Dashboard</span>
+      </button>
+      <button onclick="switchTab('masuk')" id="nav-mob-masuk"
+        class="flex flex-col items-center justify-center py-1 px-3 rounded-xl text-slate-400 font-semibold text-[11px]">
+        <i class="fa-solid fa-inbox text-base mb-0.5"></i>
+        <span>Surat Masuk</span>
+      </button>
+      <button onclick="switchTab('keluar')" id="nav-mob-keluar"
+        class="flex flex-col items-center justify-center py-1 px-3 rounded-xl text-slate-400 font-semibold text-[11px]">
+        <i class="fa-solid fa-paper-plane text-base mb-0.5"></i>
+        <span>Surat Keluar</span>
+      </button>
+    </nav>
+
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed top-5 right-5 z-50 hidden max-w-sm bg-slate-900 text-white px-4 py-3 rounded-2xl shadow-xl flex items-center gap-3 text-xs font-semibold">
+    <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-base"></i>
+    <span id="toast-text">Berhasil disimpan!</span>
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- JAVASCRIPT LOGIC FRONTEND                                             -->
+  <!-- ===================================================================== -->
+  <script>
+<script>
+  // 1. TEMPELKAN URL WEB APP GOOGLE APPS SCRIPT (/exec) ANDA DI SINI:
+  const GAS_API_URL = 'https://script.google.com/macros/s/AKfycbwymlgf2jjgLoAofxR5fsxDxzazTl_9HAnx3HBZlQFHhdPhh4eOCS5KpNPLXo11CxSF3w/exec';
+
+  // Fungsi Helper pemanggil API Google Apps Script dari Vercel
+  async function callGasApi(action, data = {}) {
+    const response = await fetch(GAS_API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+      body: JSON.stringify({ action, ...data })
+    });
+    return await response.json();
+  }
+
+  // Polifill otomatis: Mengubah panggilan google.script.run menjadi fetch() saat di Vercel
+  if (typeof google === 'undefined' || !google.script) {
+    window.google = {
+      script: {
+        run: new Proxy({}, {
+          get(_, prop) {
+            const createRunner = (handlers = {}) => new Proxy({}, {
+              get(_, method) {
+                if (method === 'withSuccessHandler') {
+                  return (fn) => createRunner({ ...handlers, onSuccess: fn });
+                }
+                if (method === 'withFailureHandler') {
+                  return (fn) => createRunner({ ...handlers, onError: fn });
+                }
+                // Eksekusi panggilan fungsi ke Google Apps Script
+                return async (...args) => {
+                  try {
+                    let body = {};
+                    if (method === 'verifyLogin') {
+                      body = { username: args[0], password: args[1] };
+                    } else if (method === 'saveSuratKeluar' || method === 'uploadSuratMasuk') {
+                      body = { payload: args[0] };
+                    }
+                    const res = await callGasApi(method, body);
+                    if (handlers.onSuccess) handlers.onSuccess(res);
+                  } catch (err) {
+                    if (handlers.onError) handlers.onError(err);
+                  }
+                };
+              }
+            });
+            return createRunner()[prop];
+          }
+        })
+      }
+    };
+  }
+</script>
+    let selectedFileMasuk = null;
+    let selectedFileKeluar = null;
+    let hasPlayedDashboardIntro = false;
+    let typingInterval = null;
+
+    // Inisialisasi Logo & Default Tanggal saat halaman dimuat
+    window.addEventListener('DOMContentLoaded', () => {
+      renderFallbackLogos();
+      const today = new Date().toISOString().split('T')[0];
+      document.getElementById('masuk-tanggal').value = today;
+      updateGenerator();
+
+      // Muat file pgri.jpg dari Drive jika tersedia
+      if (typeof google !== 'undefined' && google.script) {
+        google.script.run.withSuccessHandler((base64Img) => {
+          if (base64Img) {
+            document.getElementById('login-logo-container').innerHTML =
+              `<img src="${base64Img}" class="w-full h-full object-cover rounded-full" alt="Logo PGRI">`;
+            document.querySelectorAll('.sidebar-logo-container').forEach(el => {
+              el.innerHTML = `<img src="${base64Img}" class="w-full h-full object-cover rounded-full" alt="Logo PGRI">`;
+            });
+          }
+        }).getLogoBase64();
+      }
+    });
+
+    function renderFallbackLogos() {
+      const tpl = document.getElementById('pgri-logo-template').innerHTML;
+      document.getElementById('login-logo-container').innerHTML = tpl;
+      document.querySelectorAll('.sidebar-logo-container').forEach(el => {
+        el.innerHTML = tpl;
+      });
+    }
+
+    function togglePassword() {
+      const pwd = document.getElementById('login-password');
+      const icon = document.getElementById('eye-icon');
+      if (pwd.type === 'password') {
+        pwd.type = 'text';
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+      } else {
+        pwd.type = 'password';
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+      }
+    }
+
+    function showToast(message, isError = false) {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toast-icon');
+      document.getElementById('toast-text').textContent = message;
+      icon.className = isError
+        ? 'fa-solid fa-circle-exclamation text-red-400 text-base'
+        : 'fa-solid fa-circle-check text-emerald-400 text-base';
+      toast.classList.remove('hidden');
+      setTimeout(() => toast.classList.add('hidden'), 4000);
+    }
+
+    // =====================================================================
+    // 1. FUNGSI LOGIN & ANIMASI TRANSISI MASUK KE DASHBOARD
+    // =====================================================================
+    function handleLogin(e) {
+      e.preventDefault();
+      const user = document.getElementById('login-username').value;
+      const pass = document.getElementById('login-password').value;
+      const btn = document.getElementById('btn-login');
+      const alertBox = document.getElementById('login-alert');
+
+      alertBox.classList.add('hidden');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Memverifikasi...';
+
+      if (typeof google !== 'undefined' && google.script) {
+        google.script.run
+          .withSuccessHandler((res) => {
+            btn.disabled = false;
+            btn.innerHTML = '<span>Masuk ke Aplikasi</span><i class="fa-solid fa-arrow-right-to-bracket"></i>';
+            if (res.success) {
+              playLoginSuccessAnimation(res.user);
+            } else {
+              document.getElementById('login-alert-text').textContent = res.message;
+              alertBox.classList.remove('hidden');
+            }
+          })
+          .withFailureHandler((err) => {
+            btn.disabled = false;
+            btn.innerHTML = '<span>Masuk ke Aplikasi</span><i class="fa-solid fa-arrow-right-to-bracket"></i>';
+            document.getElementById('login-alert-text').textContent = err.message;
+            alertBox.classList.remove('hidden');
+          })
+          .verifyLogin(user, pass);
+      } else {
+        // Fallback preview lokal
+        btn.disabled = false;
+        playLoginSuccessAnimation({ nama: 'Admin PGRI Teweh Selatan', jabatan: 'Sekretariat PGRI' });
+      }
+    }
+
+    function playLoginSuccessAnimation(user) {
+      const loginCard = document.getElementById('login-glass-card');
+      const overlay = document.getElementById('login-success-overlay');
+      const progressBar = document.getElementById('login-progress-bar');
+
+      document.getElementById('transition-user-greeting').textContent = 'Halo, ' + user.nama + '!';
+
+      // Efek keluar pada kartu login
+      loginCard.classList.add('login-card-exit');
+
+      // Munculkan overlay sukses iOS Glass
+      setTimeout(() => {
+        overlay.classList.remove('hidden');
+        progressBar.classList.add('animate-progress-bar');
+      }, 250);
+
+      // Setelah animasi selesai, tampilkan Dashboard beserta animasi teksnya
+      setTimeout(() => {
+        overlay.classList.add('hidden');
+        loginCard.classList.remove('login-card-exit');
+        progressBar.classList.remove('animate-progress-bar');
+        enterDashboard(user);
+      }, 1750);
+    }
+
+    function enterDashboard(user) {
+      document.getElementById('user-display-name').textContent = user.nama;
+      document.getElementById('user-display-role').textContent = user.jabatan;
+      document.getElementById('login-screen').classList.add('hidden');
+      document.getElementById('app-screen').classList.remove('hidden');
+
+      // Jalankan animasi tulisan pada saat dashboard pertama kali muncul
+      hasPlayedDashboardIntro = false;
+      runDashboardFirstAppearAnimation();
+      refreshData();
+    }
+
+    // =====================================================================
+    // 2. ANIMASI TULISAN SAAT DASHBOARD PERTAMA KALI MUNCUL
+    // =====================================================================
+    function runDashboardFirstAppearAnimation() {
+      if (hasPlayedDashboardIntro) return;
+      hasPlayedDashboardIntro = true;
+
+      const titleEl = document.getElementById('welcome-typing-text');
+      const subtitleEl = document.getElementById('welcome-subtitle-anim');
+      const fullText = 'Selamat Datang di E-Arsip PGRI Teweh Selatan';
+
+      // Reset kondisi awal
+      titleEl.textContent = '';
+      titleEl.classList.add('typing-cursor');
+      subtitleEl.classList.add('opacity-0', 'translate-y-2');
+
+      // Animasi kartu dashboard muncul berurutan (staggered)
+      const cards = document.querySelectorAll('.dash-anim-card');
+      cards.forEach((card, idx) => {
+        card.classList.remove('reveal-up');
+        void card.offsetWidth; // trigger reflow
+        card.style.animationDelay = (idx * 0.12 + 0.15) + 's';
+        card.classList.add('reveal-up');
+      });
+
+      // Animasi ketik (Typewriter) untuk judul utama
+      if (typingInterval) clearInterval(typingInterval);
+      let charIndex = 0;
+      typingInterval = setInterval(() => {
+        if (charIndex < fullText.length) {
+          titleEl.textContent += fullText.charAt(charIndex);
+          charIndex++;
+        } else {
+          clearInterval(typingInterval);
+          // Munculkan subjudul dengan transisi lembut setelah judul selesai diketik
+          subtitleEl.classList.remove('opacity-0', 'translate-y-2');
+          setTimeout(() => {
+            titleEl.classList.remove('typing-cursor');
+          }, 1800);
+        }
+      }, 38);
+    }
+
+    function handleLogout() {
+      document.getElementById('app-screen').classList.add('hidden');
+      document.getElementById('login-screen').classList.remove('hidden');
+      document.getElementById('login-password').value = '';
+    }
+
+    // =====================================================================
+    // 3. NAVIGASI TAB
+    // =====================================================================
+    function switchTab(tabName) {
+      const tabs = ['dashboard', 'masuk', 'keluar'];
+      const titles = {
+        dashboard: 'Dashboard Arsip',
+        masuk: 'Arsip Surat Masuk (Google Drive)',
+        keluar: 'Generator & Arsip Surat Keluar'
+      };
+      document.getElementById('page-title').textContent = titles[tabName];
+
+      tabs.forEach(t => {
+        document.getElementById('tab-' + t).classList.toggle('hidden', t !== tabName);
+
+        const deskBtn = document.getElementById('nav-desk-' + t);
+        if (t === tabName) {
+          deskBtn.className = 'nav-btn-desk w-full flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-semibold transition-all bg-white/15 text-white shadow-sm';
+        } else {
+          deskBtn.className = 'nav-btn-desk w-full flex items-center gap-3.5 px-4 py-3.5 rounded-2xl text-sm font-semibold text-emerald-100/80 hover:bg-white/10 hover:text-white transition-all';
+        }
+
+        const mobBtn = document.getElementById('nav-mob-' + t);
+        if (t === tabName) {
+          mobBtn.className = 'flex flex-col items-center justify-center py-1 px-3 rounded-xl text-pgri-emerald font-bold text-[11px]';
+        } else {
+          mobBtn.className = 'flex flex-col items-center justify-center py-1 px-3 rounded-xl text-slate-400 font-semibold text-[11px]';
+        }
+      });
+    }
+
+    // =====================================================================
+    // 4. GENERATOR NOMOR SURAT KELUAR (Contoh: 06/UND/PGRI-TESEL/X/2026)
+    // =====================================================================
+    function updateGenerator() {
+      const urutRaw = document.getElementById('keluar-urut').value.trim() || '01';
+      const jenis = document.getElementById('keluar-jenis').value;
+      const bulan = document.getElementById('keluar-bulan').value;
+      const tahun = document.getElementById('keluar-tahun').value;
+
+      const generated = `${urutRaw}/${jenis}/PGRI-TESEL/${bulan}/${tahun}`;
+      document.getElementById('generated-number-preview').textContent = generated;
+      document.getElementById('keluar-nomor-final').value = generated;
+    }
+
+    function copyNomorSurat() {
+      const text = document.getElementById('keluar-nomor-final').value;
+      navigator.clipboard.writeText(text);
+      showToast('Nomor surat berhasil disalin: ' + text);
+    }
+
+    // =====================================================================
+    // 5. PREVIEW FILE SURAT MASUK & SURAT KELUAR
+    // =====================================================================
+    function handleLocalPreviewMasuk(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      document.getElementById('file-chosen-label-masuk').textContent = file.name;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const dataUrl = e.target.result;
+        selectedFileMasuk = {
+          fileName: file.name,
+          mimeType: file.type,
+          base64Data: dataUrl.split(',')[1]
+        };
+        showPreviewInBox('masuk', dataUrl, file.type, 'Preview File Lokal: ' + file.name, null);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function handleLocalPreviewKeluar(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      document.getElementById('file-chosen-label-keluar').textContent = file.name;
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const dataUrl = e.target.result;
+        selectedFileKeluar = {
+          fileName: file.name,
+          mimeType: file.type,
+          base64Data: dataUrl.split(',')[1]
+        };
+        showPreviewInBox('keluar', dataUrl, file.type, 'Preview File Lokal: ' + file.name, null);
+      };
+      reader.readAsDataURL(file);
+    }
+
+    function showPreviewInBox(type, url, mimeType, captionText, externalUrl) {
+      const placeholder = document.getElementById('preview-placeholder-' + type);
+      const iframe = document.getElementById('preview-iframe-' + type);
+      const img = document.getElementById('preview-image-' + type);
+      const extLink = document.getElementById('preview-external-link-' + type);
+
+      document.getElementById('preview-caption-' + type).textContent = captionText;
+      placeholder.classList.add('hidden');
+
+      if (externalUrl) {
+        extLink.href = externalUrl;
+        extLink.classList.remove('hidden');
+      } else {
+        extLink.classList.add('hidden');
+      }
+
+      if (mimeType && mimeType.startsWith('image/')) {
+        iframe.classList.add('hidden');
+        img.src = url;
+        img.classList.remove('hidden');
+      } else {
+        img.classList.add('hidden');
+        iframe.src = url;
+        iframe.classList.remove('hidden');
+      }
+    }
+
+    // =====================================================================
+    // 6. MUAT DATA DARI GOOGLE SHEET & DRIVE
+    // =====================================================================
+    function refreshData() {
+      const icon = document.getElementById('refresh-icon');
+      icon.classList.add('fa-spin');
+
+      if (typeof google !== 'undefined' && google.script) {
+        google.script.run
+          .withSuccessHandler((res) => {
+            icon.classList.remove('fa-spin');
+            if (res.success) {
+              renderTablesAndStats(res);
+            } else {
+              showToast(res.message, true);
+            }
+          })
+          .withFailureHandler((err) => {
+            icon.classList.remove('fa-spin');
+            showToast(err.message, true);
+          })
+          .getInitialData();
+      } else {
+        icon.classList.remove('fa-spin');
+      }
+    }
+
+    function renderTablesAndStats(data) {
+      const listMasuk = data.suratMasuk || [];
+      const listKeluar = data.suratKeluar || [];
+
+      document.getElementById('stat-masuk').textContent = listMasuk.length;
+      document.getElementById('stat-keluar').textContent = listKeluar.length;
+      document.getElementById('stat-next-urut').textContent = data.nextUrut || '01';
+
+      document.getElementById('keluar-urut').value = data.nextUrut || '01';
+      updateGenerator();
+
+      // Render Tabel Surat Masuk
+      const tbodyMasuk = document.getElementById('table-surat-masuk');
+      if (listMasuk.length === 0) {
+        tbodyMasuk.innerHTML = `<tr><td colspan="3" class="py-6 text-center text-slate-400 italic">Belum ada arsip surat masuk.</td></tr>`;
+      } else {
+        tbodyMasuk.innerHTML = listMasuk.map(item => `
+          <tr class="hover:bg-slate-50">
+            <td class="py-3 px-3 font-semibold text-slate-800">
+              <div>${item.nomorSurat}</div>
+              <div class="text-[11px] text-slate-400 font-normal">${item.tanggalSurat}</div>
+            </td>
+            <td class="py-3 px-3">
+              <div class="font-semibold text-slate-700">${item.pengirim}</div>
+              <div class="text-slate-500">${item.perihal}</div>
+            </td>
+            <td class="py-3 px-3 text-right space-x-1 whitespace-nowrap">
+              <button onclick="showPreviewInBox('masuk', '${item.previewUrl}', 'application/pdf', 'Preview Drive: ${item.nomorSurat}', '${item.viewUrl}')"
+                class="px-2.5 py-1.5 rounded-lg bg-emerald-50 text-pgri-emerald hover:bg-emerald-100 font-bold text-[11px]">
+                <i class="fa-solid fa-eye mr-1"></i> Preview
+              </button>
+              <a href="${item.viewUrl}" target="_blank"
+                class="inline-block px-2.5 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 font-bold text-[11px]">
+                <i class="fa-brands fa-google-drive"></i>
+              </a>
+            </td>
+          </tr>
+        `).join('');
+      }
+
+      // Render Tabel Surat Keluar
+      const tbodyKeluar = document.getElementById('table-surat-keluar');
+      if (listKeluar.length === 0) {
+        tbodyKeluar.innerHTML = `<tr><td colspan="4" class="py-6 text-center text-slate-400 italic">Belum ada arsip surat keluar.</td></tr>`;
+      } else {
+        tbodyKeluar.innerHTML = listKeluar.map(item => {
+          const actionBtns = item.previewUrl
+            ? `<button onclick="showPreviewInBox('keluar', '${item.previewUrl}', 'application/pdf', 'Preview Surat Keluar: ${item.nomorSurat}', '${item.viewUrl}')"
+                 class="px-2.5 py-1.5 rounded-lg bg-red-50 text-pgri-crimson hover:bg-red-100 font-bold text-[11px]">
+                 <i class="fa-solid fa-eye mr-1"></i> Preview
+               </button>
+               <a href="${item.viewUrl}" target="_blank"
+                 class="inline-block px-2.5 py-1.5 rounded-lg bg-slate-100 text-slate-700 hover:bg-slate-200 font-bold text-[11px]">
+                 <i class="fa-brands fa-google-drive"></i>
+               </a>`
+            : `<span class="text-[11px] text-slate-400 italic">Tanpa File</span>`;
+
+          return `
+            <tr class="hover:bg-slate-50">
+              <td class="py-3 px-3">
+                <div class="font-mono font-bold text-pgri-emerald">${item.nomorSurat}</div>
+                <div class="text-[10px] text-slate-400">${item.tanggalInput}</div>
+              </td>
+              <td class="py-3 px-3 text-slate-700 font-medium">${item.tentang}</td>
+              <td class="py-3 px-3 text-slate-500">${item.tujuan || '-'}</td>
+              <td class="py-3 px-3 text-right space-x-1 whitespace-nowrap">${actionBtns}</td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      // Render Ringkasan Dashboard
+      document.getElementById('dash-list-masuk').innerHTML = listMasuk.slice(0, 4).map(m => `
+        <div class="p-3 rounded-xl bg-slate-50 flex items-center justify-between">
+          <div>
+            <p class="font-bold text-slate-800">${m.nomorSurat}</p>
+            <p class="text-[11px] text-slate-500">${m.pengirim} — ${m.perihal}</p>
+          </div>
+          <a href="${m.viewUrl}" target="_blank" class="text-pgri-emerald font-bold hover:underline">Buka</a>
+        </div>
+      `).join('') || '<p class="text-slate-400 italic py-4 text-center">Belum ada data surat masuk.</p>';
+
+      document.getElementById('dash-list-keluar').innerHTML = listKeluar.slice(0, 4).map(k => `
+        <div class="p-3 rounded-xl bg-slate-50 flex items-center justify-between">
+          <div>
+            <p class="font-mono font-bold text-pgri-crimson">${k.nomorSurat}</p>
+            <p class="text-[11px] text-slate-500">${k.tentang}</p>
+          </div>
+          ${k.viewUrl
+            ? `<a href="${k.viewUrl}" target="_blank" class="text-pgri-crimson font-bold hover:underline">Buka File</a>`
+            : `<span class="text-[10px] px-2 py-0.5 rounded bg-red-50 text-pgri-crimson font-bold">${k.jenis || 'SURAT'}</span>`
+          }
+        </div>
+      `).join('') || '<p class="text-slate-400 italic py-4 text-center">Belum ada data surat keluar.</p>';
+    }
+
+    // =====================================================================
+    // 7. UPLOAD SURAT MASUK KE DRIVE
+    // =====================================================================
+    function handleUploadSuratMasuk(e) {
+      e.preventDefault();
+      if (!selectedFileMasuk) {
+        showToast('Silakan pilih file dokumen surat masuk terlebih dahulu!', true);
+        return;
+      }
+
+      const btn = document.getElementById('btn-submit-masuk');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Mengunggah ke Google Drive...';
+
+      const payload = {
+        nomorSurat: document.getElementById('masuk-nomor').value.trim(),
+        tanggalSurat: document.getElementById('masuk-tanggal').value,
+        pengirim: document.getElementById('masuk-pengirim').value.trim(),
+        perihal: document.getElementById('masuk-perihal').value.trim(),
+        fileName: selectedFileMasuk.fileName,
+        mimeType: selectedFileMasuk.mimeType,
+        base64Data: selectedFileMasuk.base64Data
+      };
+
+      google.script.run
+        .withSuccessHandler((res) => {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i><span>Upload ke Drive & Simpan Arsip</span>';
+          if (res.success) {
+            showToast(res.message);
+            document.getElementById('form-surat-masuk').reset();
+            document.getElementById('file-chosen-label-masuk').textContent = 'Klik untuk pilih file PDF / JPG / PNG';
+            selectedFileMasuk = null;
+            if (res.fileData && res.fileData.previewUrl) {
+              showPreviewInBox('masuk', res.fileData.previewUrl, 'application/pdf', 'Tersimpan di Drive: ' + res.fileData.nomorSurat, res.fileData.viewUrl);
+            }
+            refreshData();
+          } else {
+            showToast(res.message, true);
+          }
+        })
+        .withFailureHandler((err) => {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-cloud-arrow-up"></i><span>Upload ke Drive & Simpan Arsip</span>';
+          showToast(err.message, true);
+        })
+        .uploadSuratMasuk(payload);
+    }
+
+    // =====================================================================
+    // 8. SIMPAN SURAT KELUAR KE SHEET & UPLOAD FILE KE DRIVE SURAT KELUAR
+    // =====================================================================
+    function handleSaveSuratKeluar(e) {
+      e.preventDefault();
+      const btn = document.getElementById('btn-submit-keluar');
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Menyimpan ke Sheet & Drive...';
+
+      const payload = {
+        noUrut: document.getElementById('keluar-urut').value.trim(),
+        nomorSurat: document.getElementById('keluar-nomor-final').value.trim(),
+        jenis: document.getElementById('keluar-jenis').value,
+        bulan: document.getElementById('keluar-bulan').value,
+        tahun: document.getElementById('keluar-tahun').value,
+        tujuan: document.getElementById('keluar-tujuan').value.trim(),
+        tentang: document.getElementById('keluar-tentang').value.trim(),
+        fileName: selectedFileKeluar ? selectedFileKeluar.fileName : '',
+        mimeType: selectedFileKeluar ? selectedFileKeluar.mimeType : '',
+        base64Data: selectedFileKeluar ? selectedFileKeluar.base64Data : ''
+      };
+
+      google.script.run
+        .withSuccessHandler((res) => {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i><span>Simpan ke Sheet & Upload ke Drive</span>';
+          if (res.success) {
+            showToast(res.message);
+            document.getElementById('keluar-tentang').value = '';
+            document.getElementById('keluar-tujuan').value = '';
+            document.getElementById('keluar-file').value = '';
+            document.getElementById('file-chosen-label-keluar').textContent = 'Klik untuk pilih file Surat Keluar';
+            selectedFileKeluar = null;
+            if (res.fileData && res.fileData.previewUrl) {
+              showPreviewInBox('keluar', res.fileData.previewUrl, 'application/pdf', 'Tersimpan di Drive: ' + res.fileData.nomorSurat, res.fileData.viewUrl);
+            }
+            refreshData();
+          } else {
+            showToast(res.message, true);
+          }
+        })
+        .withFailureHandler((err) => {
+          btn.disabled = false;
+          btn.innerHTML = '<i class="fa-solid fa-floppy-disk"></i><span>Simpan ke Sheet & Upload ke Drive</span>';
+          showToast(err.message, true);
+        })
+        .saveSuratKeluar(payload);
+    }
+  </script>
+</body>
+</html>
